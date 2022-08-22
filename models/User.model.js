@@ -1,6 +1,8 @@
 const mongoose = require('mongoose'); // Para crear DB
 const bcrypt = require('bcrypt'); // Para encriptar la contraseña del usuario
 
+
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -22,4 +24,5 @@ const userSchema = new mongoose.Schema({
 
 })
 
+const User = mongoose.model('User', userSchema)
 module.exports = User;

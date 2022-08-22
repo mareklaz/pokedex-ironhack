@@ -4,6 +4,8 @@ const express = require('express');
 const hbs = require('hbs');
 const logger = require('morgan')
 
+require('./config/db.config.js')// requerir la base de datos!!
+
 const app = express();
 
 app.use(express.static('public')); // Generamos la ruta de public donde estarn los elementos estaticos
@@ -16,9 +18,8 @@ app.set('view engine', 'hbs');
 
 hbs.registerPartials(__dirname + '/views/partials'); // Indicamos donde están los partials.
 
-const router = require('./config/routes'); // Requerimos el contenido de Routes
-
-app.use('/', router) // Usamos el routes 
+const routes = require('./config/routes'); // Requerimos el contenido de Routes
+app.use(routes) // Usamos el routes 
 
 app.use((res, req, next) => {
     next(console.log('404'));
