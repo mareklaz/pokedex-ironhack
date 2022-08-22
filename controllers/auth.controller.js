@@ -28,12 +28,10 @@ module.exports.doRegister = (req, res, next) => {
 };
 
 // Login
-module.exports.login = (req, res, next) => {
-    res.render('auth/login');
-}
+
 
 const login = (req, res, next, provider) => {
-    passport.authenticate(provider || 'local-auth', (err, user, validations) => {
+    passport.authenticate(provider || 'local-auth', (err, user, validations) => {
         if (err) {
             console.log('Error 🟢' + err);
             next(err);
@@ -47,6 +45,7 @@ const login = (req, res, next, provider) => {
                     console.log('login error 🔵');
                     next(loginError);
                 } else {
+                    console.log('entro aqui--------------------------------')
                     res.redirect('/profile');
                 }
             })
@@ -54,6 +53,15 @@ const login = (req, res, next, provider) => {
     })
 }
 
-// module.exports.doLogin = (req, res, next) => {
-    
+module.exports.login = (req, res, next) => {
+    res.render('auth/login');
+}
+
+module.exports.doLogin = (req, res, next) => {
+    login(req, res, next);
+}
+
+// module.exports.logout = (req, res, next) => {
+//     req.session.destroy();
+//     res.redirect('/login');
 // }

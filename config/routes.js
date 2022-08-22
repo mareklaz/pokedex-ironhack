@@ -12,7 +12,7 @@ router.get('/register', authController.register) // renedrizar la vista de formu
 router.post('/register', authController.doRegister) //enviar la info del form al controlador que a su misma vez lo enviará a la database DB
 // Auth > Login
 router.get('/login', authController.login) // Renderizar la vista de login
-//router.post('/login', authController.doLogin) // Envia la información de login al controlador
+router.post('/login', authController.doLogin) // Envia la información de login al controlador
 
 // User
 router.get('/profile', userController.user)
