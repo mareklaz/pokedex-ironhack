@@ -1,9 +1,8 @@
 /* Importamos la fuente desde google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 /* Agregamos la fuente para todos los elementos */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #FFCB05;
     color: #3465AF;
 }

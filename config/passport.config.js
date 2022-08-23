@@ -25,22 +25,22 @@ passport.use('local-auth', new LocalStrategy(
         passwordField: 'password'
     },
     (email, password, next) => {
-        User.findOne({ email })
-            .then((user) => {
+        User.findOne({ email }) // Busca el usuario por email
+            .then((user) => { // Recibe respuesta de la busqueda
                 if (!user) {
-                    next(null, false, {error: 'Invalid Credentials'});
-                } else {
-                    return user.checkPassword(password)
-                        .then((match) => {
+                    next(null, false, {error: 'Invalid Credentials'}); // No encuentra al usuario
+                } else { // Encuentra al usuario
+                    return user.checkPassword(password) // Comprueba la contraseña
+                        .then((match) => { 
                             if(!match) {
-                                next(null, false, {error: 'Invalid Credentials'});
+                                next(null, false, {error: 'Invalid Credentials'}); // Contraseña no coincide
                             } else {
-                                next(null, user)
+                                next(null, user); // Contraseña coincide, login OK
                             }
                         })
                 }
             })
-            .catch(err => next(err))
+            .catch(err => next(err));
     }
 ))
 
