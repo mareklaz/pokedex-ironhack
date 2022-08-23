@@ -1,0 +1,14 @@
+/* Importamos la fuente desde google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* Agregamos la fuente para todos los elementos */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFCB05;
+    color: #3465AF;
+}
+
+.user-img {
+    height: 150px;
+    width: 150px;
+}
