@@ -29,6 +29,7 @@ hbs.registerPartials(__dirname + '/views/partials'); // Indicamos donde están l
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
+    console.log('Current user app.js ----------------' + res.locals.currentUser)
     next();
 })
 

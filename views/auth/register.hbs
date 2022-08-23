@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row justify-content-center text-center">
-    <div class="col-4 my-5 py-5">
+    <div class="col-6 my-5 py-5">
       <img src="./images/logo.svg" alt="pokemon-logo-image">
       <h1 class="my-5">User Registration</h1>
-      <form action='/register' method="post">
+      <form action="/register" method="post" enctype="multipart/form-data">
         <div class="mb-3 input-group-lg">
           <label for="name" class="form-label ">Name</label>
           <input name="name" type="text" class="form-control" id="name">
@@ -15,8 +15,13 @@
           <div class="mb-3 input-group-lg">
           <label for="password" class="form-label ">Password</label>
           <input name="password" type="password" class="form-control" id="password">
+        <div class="my-4">
+          <label for="formFile" class="form-label">Upload user image</label>
+          <input name="image" class="form-control form-control-lg" type="file" id="formFile">
         </div>
+        <div class="d-grid gap-2 mt-2">
         <button type="submit" class="btn btn-primary">Register</button>
+        </div>  
       </form>  
     </div>
   </div>

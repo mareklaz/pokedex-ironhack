@@ -10,6 +10,10 @@ module.exports.register = (req, res, next) => {
 module.exports.doRegister = (req, res, next) => {
     const user = req.body
     
+    if(req.file) {
+        user.image = req.file.path;
+    }
+
     User.findOne({ email: user.email })
         .then((userFound) => {
             if(userFound){
@@ -34,19 +38,15 @@ module.exports.doRegister = (req, res, next) => {
 const login = (req, res, next, provider) => {
     passport.authenticate(provider || 'local-auth', (err, user, validations) => {
         if (err) {
-            console.log('Error 🟢' + err);
             next(err);
         } else if (!user) {
-            console.log('Status 🟡'+ user)
             res.status(404).render('auth/login', { errors: validations.error } );
         } else {
             req.login(user, (loginError) => {
-                console.log('User success 🔴');
+                console.log('♦️♦️♦️♦️♦️♦️' + user)
                 if(loginError) {
-                    console.log('login error 🔵');
                     next(loginError);
                 } else {
-                    console.log('entro aqui--------------------------------')
                     res.redirect('/profile');
                 }
             })
@@ -59,10 +59,12 @@ module.exports.login = (req, res, next) => {
   };
 
 module.exports.doLogin = (req, res, next) => {
+    console.log('Login con Local')
     login(req, res, next);
 }
 
 module.exports.doLoginGoogle = (req, res, next) => {
+    console.log('Login con Google')
     login(req, res, next, 'google-auth')
 }
 

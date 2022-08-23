@@ -15,7 +15,6 @@ passport.deserializeUser((id, next) => {
             next(null, user);
         })
         .catch(err => {
-            console.log('Error 🟨');
             next(err);
         })
 })
@@ -29,18 +28,14 @@ passport.use('local-auth', new LocalStrategy(
         User.findOne({ email }) // Busca el usuario por email
             .then((user) => { // Recibe respuesta de la busqueda
                 if (!user) {
-                    console.log("NO ENCUENTRA AL USUARIO!!!!!!!!!!!!!!!!!!!!!")
                     next(null, false, {error: 'Invalid Credentials'}); // No encuentra al usuario
                 } else { // Encuentra al usuario
-                    console.log("si ENCUENTRA AL USUARIO!!!!!!!!!!!!!!!!!!!!!")
                     return user.checkPassword(password) // Comprueba la contraseña
                         .then((match) => { 
                             if(!match) {
-                                console.log("NO ES LA MISMA PASSWORD DEL USUARIO!!!!!!!!!!!!!!!!!!!!!")
                                 next(null, false, {error: 'Invalid Credentials'}); // Contraseña no coincide
                             } else {
-                                console.log("todo en orden, manda el user!!!!!!!!!!!!!!!!!!!!!")
-                                    next(null, user)
+                                next(null, user)
                             }
                         })
                 }
@@ -82,6 +77,7 @@ passport.use('google-auth', new GoogleStrategy(
                     name,
                     image
                 }).then(createdUser => {
+                    console.log(createdUser)
                     next(null, createdUser)
                 })
             })

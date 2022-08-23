@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'); // Para crear DB
 const bcrypt = require('bcrypt'); // Para encriptar la contraseña del usuario
-//const { user } = require('../controllers/user.controller');
+const { user } = require('../controllers/user.controller');
 
 const EMAIL_PATTERN =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;

@@ -12,4 +12,4 @@ module.exports.isNotAuthenticated = (req, res, next) => {
     } else {
       res.redirect("/login");
     }
-  };
+};
