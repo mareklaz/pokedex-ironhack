@@ -43,7 +43,7 @@ const login = (req, res, next, provider) => {
             res.status(404).render('auth/login', { errors: validations.error } );
         } else {
             req.login(user, (loginError) => {
-                console.log('♦️♦️♦️♦️♦️♦️' + user)
+                console.log('Login de' + user)
                 if(loginError) {
                     next(loginError);
                 } else {

@@ -75,9 +75,9 @@ passport.use('google-auth', new GoogleStrategy(
                     googleID, 
                     password: mongoose.Types.ObjectId(),
                     name,
-                    image
+                    image,
                 }).then(createdUser => {
-                    console.log(createdUser)
+                    console.log('✅ Usuario creado: ' + createdUser)
                     next(null, createdUser)
                 })
             })

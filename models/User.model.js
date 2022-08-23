@@ -27,8 +27,10 @@ const userSchema = new mongoose.Schema({
     image: {
         type: String,
         default: './images/user-default.png'
-    }
-
+    },
+    googleID: {
+        type: String
+    },
 })
 
 userSchema.pre('save', function (next) {
