@@ -9,36 +9,39 @@ module.exports.register = (req, res, next) => {
 
 module.exports.doRegister = (req, res, next) => {
     const user = req.body
+    
     User.findOne({ email: user.email })
         .then((userFound) => {
             if(userFound){
                 console.log('This email is already exists')
             } else {
                 return User.create(user)
-                    .then((createdUser) => {
-                        console.log(createdUser); 
-                        res.redirect('/profile');
+                    .then((userCreated) => {
+                        console.log(userCreated); 
+                        res.redirect('/login');
                     })
             }
         }) // then end
         .catch((err) => {
            console.log(err) 
-           next();
+           next(err);
         })
 };
 
 // Login
+
+
 const login = (req, res, next, provider) => {
     passport.authenticate(provider || 'local-auth', (err, user, validations) => {
         if (err) {
             console.log('Error 🟢' + err);
             next(err);
         } else if (!user) {
-            console.log('Status 🟡')
-            next.status(404).render('auth/login', { errors: validations.error } );
+            console.log('Status 🟡'+ user)
+            res.status(404).render('auth/login', { errors: validations.error } );
         } else {
             req.login(user, (loginError) => {
-                console.log('User error 🔴');
+                console.log('User success 🔴');
                 if(loginError) {
                     console.log('login error 🔵');
                     next(loginError);
@@ -48,18 +51,22 @@ const login = (req, res, next, provider) => {
                 }
             })
         }
-    })
+    })(req, res, next)
 }
 
 module.exports.login = (req, res, next) => {
-    res.render('auth/login');
-}
+    res.render("auth/login");
+  };
 
 module.exports.doLogin = (req, res, next) => {
     login(req, res, next);
 }
 
+module.exports.doLoginGoogle = (req, res, next) => {
+    login(req, res, next, 'google-auth')
+}
+
 module.exports.logout = (req, res, next) => {
     req.session.destroy();
-    res.redirect('/login');
-}
+    res.redirect("/login");
+  };
