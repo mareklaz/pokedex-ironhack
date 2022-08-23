@@ -28,8 +28,6 @@ module.exports.doRegister = (req, res, next) => {
 };
 
 // Login
-
-
 const login = (req, res, next, provider) => {
     passport.authenticate(provider || 'local-auth', (err, user, validations) => {
         if (err) {
@@ -37,7 +35,7 @@ const login = (req, res, next, provider) => {
             next(err);
         } else if (!user) {
             console.log('Status 🟡')
-            next.status(404).render('auth/login',{ errors: validations.error } );
+            next.status(404).render('auth/login', { errors: validations.error } );
         } else {
             req.login(user, (loginError) => {
                 console.log('User error 🔴');
@@ -61,7 +59,7 @@ module.exports.doLogin = (req, res, next) => {
     login(req, res, next);
 }
 
-// module.exports.logout = (req, res, next) => {
-//     req.session.destroy();
-//     res.redirect('/login');
-// }
+module.exports.logout = (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/login');
+}
