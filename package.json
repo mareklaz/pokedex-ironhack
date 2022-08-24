@@ -32,6 +32,7 @@
     "nodemon": "^2.0.19",
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "pokedex-promise-v2": "^4.0.0"
   }
 }

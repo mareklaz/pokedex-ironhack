@@ -7,6 +7,7 @@ const miscController = require('../controllers/misc.controller');
 const authController = require('../controllers/auth.controller');
 const userController = require('../controllers/user.controller');
 const authMiddlewares = require('../middlewares/authMiddleware');
+const pokemonController = require('../controllers/pokemon.controller');
 
 const SCOPES = [
     'profile',
@@ -32,5 +33,9 @@ router.get('/logout', authMiddlewares.isAuthenticated ,authController.logout);
 
 // User
 router.get('/profile', authMiddlewares.isAuthenticated, userController.user);
+
+// PokeApi Routes
+router.get('/pokemon', pokemonController.list)
+
 
 module.exports = router;
