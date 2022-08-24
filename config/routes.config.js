@@ -36,6 +36,7 @@ router.get('/profile', authMiddlewares.isAuthenticated, userController.user);
 
 // PokeApi Routes
 router.get('/pokemon', pokemonController.list)
+router.get('/pokemon/:id', pokemonController.detail)
 
 
 module.exports = router;

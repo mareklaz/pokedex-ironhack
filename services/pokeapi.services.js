@@ -10,6 +10,10 @@ class PokeapiService {
     getPokemons = () => {
         return this.api.get('/pokemon');
     }
+
+    getPokemonsDetails = (pokemonId) => {
+        return this.api.get(`/pokemon/${pokemonId}`)
+    }
 }
 
 module.exports = PokeapiService;
