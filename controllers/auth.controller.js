@@ -33,8 +33,6 @@ module.exports.doRegister = (req, res, next) => {
 };
 
 // Login
-
-
 const login = (req, res, next, provider) => {
     passport.authenticate(provider || 'local-auth', (err, user, validations) => {
         if (err) {
